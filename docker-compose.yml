@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    networks:
+      - app
+
+  userdb:
+    image: postgres:15
+    container_name: postdb
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_user:/var/lib/postgresql/data
+    networks:
+      - app
+
+volumes:
+  postgres_data_user:
+
+networks:
+  app:
+    driver: bridge
