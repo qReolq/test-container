@@ -23,13 +23,14 @@ jobs:
           restore-keys: |
             gradle-
 
-      - run: |
-          ./gradlew clean build
+      - run: chmod +x ./gradlew
+
+      - run: ./gradlew clean build
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          files: ./build/jacocoHtml/index.html
+          files: ./build/reports/jacoco/test/html/index.html
           fail_ci_if_error: false
