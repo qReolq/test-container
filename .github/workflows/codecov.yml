@@ -31,5 +31,5 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          files: ./build/reports/jacoco/test/html/index.html
+          files: ./build/jacocoHtml/index.html
           fail_ci_if_error: false
